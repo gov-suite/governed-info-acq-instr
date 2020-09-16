@@ -13,6 +13,6 @@ validatable data acquisition systems. It's based on a "specify once, generate ma
 ## To test
 
 ```bash
-deno-run attest.conf.ts
+deno-test
 ```
 
