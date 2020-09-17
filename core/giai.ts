@@ -18,17 +18,19 @@ export interface Path {
 export interface FileSystemPath extends Path {
   readonly isFileSystemPath: true;
   readonly fsPath: FsPathOnly;
+  readonly exists: boolean;
 }
 
 export function isFileSystemPath(o: unknown): o is FileSystemPath {
   return o && typeof o === "object" && "isFileSystemPath" in o;
 }
 
-export function guessPath(fsPath: FsPathOnly): Path {
-  const result: FileSystemPath = {
+export function fileSystemPath(fsPath: FsPathOnly): FileSystemPath {
+  return {
     isPath: true,
     isFileSystemPath: true,
     fsPath: fsPath,
+    exists: fs.existsSync(fsPath),
     childPath: (childPath: FsPathOnly): Path => {
       return guessPath(path.join(fsPath, childPath));
     },
@@ -36,7 +38,20 @@ export function guessPath(fsPath: FsPathOnly): Path {
       return path.join(fsPath, file.fileName);
     },
   };
-  return result;
+}
+
+export function firstFileSystemPathFound(
+  ...fsPaths: FsPathOnly[]
+): FileSystemPath | undefined {
+  for (const fspo of fsPaths) {
+    const fsp = fileSystemPath(fspo);
+    if (fsp.exists) return fsp;
+  }
+  return undefined;
+}
+
+export function guessPath(fsPath: FsPathOnly): Path {
+  return fileSystemPath(fsPath);
 }
 
 export interface PolyglotFile {
