@@ -1,19 +1,21 @@
-import { assert } from "https://deno.land/std@0.69.0/_util/assert.ts";
 import { testingAsserts as ta } from "./deps-test.ts";
+import { path } from "./deps.ts";
 import * as mef from "./giai_test.golden/medigy-evaluation-facets.conf.ts";
 import * as mod from "./mod.ts";
 
-const pathName = "giai_test.golden";
-const homePath = mod.firstFileSystemPathFound(
-  `./${pathName}`,
-  `./core/${pathName}`,
-  `./governed-info-acq-instr/core/${pathName}`,
+// find relative path to the test data directory (so that tests can be run from anywhere)
+const homePath = mod.fileSystemPath(
+  path.relative(
+    Deno.cwd(),
+    `${path.dirname(import.meta.url)}/giai_test.golden`
+      .substr("file://".length),
+  ),
 );
 
-Deno.test("./giai_test.golden/medigy-evaluation-facets.conf.ts", async () => {
-  assert(
-    homePath,
-    "The test should be run from either core or one of its parents.",
+Deno.test(`${homePath.fsPath}/medigy-evaluation-facets.conf.ts`, async () => {
+  ta.assert(
+    homePath.exists,
+    `Test data directory '${homePath.fsPath}' not found.`,
   );
 
   const config = new mef.MedigyEvaluationFacets(homePath);
@@ -21,12 +23,12 @@ Deno.test("./giai_test.golden/medigy-evaluation-facets.conf.ts", async () => {
     for (const c of config.campaigns) {
       ta.assert(
         mod.isFileSystemPath(c.homePath),
-        `${c.homePath} is not a file system path, not sure how to handle.`,
+        `'${c.homePath}' is not a file system path, not sure how to handle.`,
       );
-      for (const aq of c.questionnaires) {
+      for (const q of c.questionnaires) {
         ta.assert(
-          aq.nihLhcFormFile.fileExists,
-          `LHC Form JSON '${aq.nihLhcFormFile.fileName}' should exist`,
+          q.nihLhcFormFile.fileExists,
+          `LHC Form JSON '${q.nihLhcFormFile.fileName}' should exist`,
         );
       }
     }
