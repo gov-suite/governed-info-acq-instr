@@ -16,3 +16,20 @@ validatable data acquisition systems. It's based on a "specify once, generate ma
 deno-test
 ```
 
+# TODO
+
+These are the Tabs which displaying under the Assessments page in Attest 
+* Assessment
+* Assessment Activity
+* Attachments
+* Comments
+* Ask Question ( Create an email request to all participants of assessment)
+* Assessment Conservation ( Have option with two separate email accounts, One with all participants  and another one is analyst group only )
+* Score
+
+We have an assessment Invitation Labels based on each assessment in Attest 1.0
+* Questionnaire Page Instructions
+* Login Page Instructions
+* Signup Instructions
+* Reminder instructions
+
