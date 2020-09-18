@@ -1,4 +1,5 @@
 import { fs, path } from "./deps.ts";
+import type * as lform from "./lform.ts";
 
 export type URL = string;
 export type FsPathOnly = string;
@@ -145,6 +146,7 @@ export interface HumanSurveyInstrument extends DataCollectionInstrument {
 export interface NihLhcFormInstrument {
   readonly isNihLhcFormInstrument: true;
   readonly nihLhcFormFile: NihLhcFormJsonFile;
+  readonly nihLhcForm: lform.NihLhcForm;
   readonly respStore: NihLhcFormResponseStore;
 }
 
@@ -218,6 +220,7 @@ export class TypicalQuestionnaire implements Questionnaire {
   readonly isDataCollectionInstrument = true;
   readonly isHumanSurveyInstrument = true;
   readonly isNihLhcFormInstrument = true;
+  readonly nihLhcForm: lform.NihLhcForm;
   readonly displayName: QuestionnaireName;
   readonly shareInfo: TextTemplate;
   readonly invitationInfo: TextTemplate;
@@ -230,7 +233,15 @@ export class TypicalQuestionnaire implements Questionnaire {
     readonly nihLhcFormFile: NihLhcFormJsonFile,
     options?: TypicalQuestionnaireOptions,
   ) {
-    this.displayName = options?.displayName || "<get from LHC Form File>";
+    try {
+      const json = Deno.readFileSync(nihLhcFormFile.fileName);
+      this.nihLhcForm = JSON.parse(new TextDecoder().decode(json));
+    } catch (err) {
+      console.error(`Unable to parse '${nihLhcFormFile.fileName}': ${err}`);
+      this.nihLhcForm = {};
+    }
+    this.displayName = options?.displayName || this.nihLhcForm.name ||
+      "UNTITLED";
     this.shareInfo = options?.shareInfo || "<get from LHC Form File>";
     this.invitationInfo = options?.displayName || "<get from LHC Form File>";
     this.respStore = options?.respStore ||

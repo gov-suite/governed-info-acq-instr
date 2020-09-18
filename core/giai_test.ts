@@ -30,6 +30,11 @@ Deno.test(`${homePath.fsPath}/medigy-evaluation-facets.conf.ts`, async () => {
           q.nihLhcFormFile.fileExists,
           `LHC Form JSON '${q.nihLhcFormFile.fileName}' should exist`,
         );
+
+        ta.assert(
+          q.nihLhcForm.name,
+          `${q.nihLhcFormFile.fileName} should have an LHC Form name`,
+        );
       }
     }
   }

@@ -1,4 +1,4 @@
-export interface LhcForm {
+export interface NihLhcForm {
   type?: string;
   code?: string;
   name?: string;
