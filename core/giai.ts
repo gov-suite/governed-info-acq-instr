@@ -1,5 +1,4 @@
-import { fs, path } from "./deps.ts";
-import type * as lform from "./lform.ts";
+import { fs, nihLhcForms as lform, path } from "./deps.ts";
 
 export type URL = string;
 export type FsPathOnly = string;
