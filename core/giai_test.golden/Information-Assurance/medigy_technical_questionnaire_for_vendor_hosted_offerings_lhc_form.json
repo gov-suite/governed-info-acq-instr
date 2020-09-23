@@ -59,7 +59,6 @@
           "question": "Phone",
           "questionCode": "Q003-06",
           "hideUnits": false,
-          "numberField": true,
           "noEmptyValue": true,
           "localQuestionCode": "Q003-06",
           "dataType": "ST"
@@ -112,7 +111,6 @@
           "question": "Phone",
           "questionCode": "Q004-06",
           "hideUnits": false,
-          "numberField": true,
           "noEmptyValue": true,
           "localQuestionCode": "Q004-06",
           "dataType": "ST"

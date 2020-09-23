@@ -18,7 +18,9 @@ Deno.test(`${homePath.fsPath}/medigy-evaluation-facets.conf.ts`, async () => {
     `Test data directory '${homePath.fsPath}' not found.`,
   );
 
-  const config = new mef.MedigyEvaluationFacets(homePath);
+  const config = new mef.MedigyEvaluationFacets(
+    mod.fileSystemPath(homePath.fsPath),
+  );
   if (config.campaigns) {
     for (const c of config.campaigns) {
       ta.assert(
@@ -29,6 +31,15 @@ Deno.test(`${homePath.fsPath}/medigy-evaluation-facets.conf.ts`, async () => {
         ta.assert(
           q.nihLhcFormFile.fileExists,
           `LHC Form JSON '${q.nihLhcFormFile.fileName}' should exist`,
+        );
+
+        const diagnostics = await q.nihLhcFormFile.validate();
+        if (diagnostics) {
+          console.log(Deno.formatDiagnostics(diagnostics));
+        }
+        ta.assert(
+          diagnostics == undefined,
+          `${q.nihLhcFormFile.fileName} should not have validation errors.`,
         );
 
         ta.assert(

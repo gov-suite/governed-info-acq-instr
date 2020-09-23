@@ -1,4 +1,4 @@
-import { fs, nihLhcForms as lform, path } from "./deps.ts";
+import { fs, nihLhcForms as lform, path, typedDataGen as tdg } from "./deps.ts";
 
 export type URL = string;
 export type FsPathOnly = string;
@@ -12,7 +12,7 @@ export type AbsoluteFsPathAndFileName = AbsoluteFsPath & string;
 export interface Path {
   readonly isPath: true;
   readonly childPath: (path: FsPathOnly) => Path;
-  readonly childFilePath: (file: PolyglotFile) => RelativeFsPath;
+  readonly childFilePath: (file: PolyglotFile | string) => RelativeFsPath;
 }
 
 export interface FileSystemPath extends Path {
@@ -34,8 +34,8 @@ export function fileSystemPath(fsPath: FsPathOnly): FileSystemPath {
     childPath: (childPath: FsPathOnly): Path => {
       return guessPath(path.join(fsPath, childPath));
     },
-    childFilePath: (file: PolyglotFile): RelativeFsPath => {
-      return path.join(fsPath, file.fileName);
+    childFilePath: (file: PolyglotFile | string): RelativeFsPath => {
+      return path.join(fsPath, typeof file === "string" ? file : file.fileName);
     },
   };
 }
@@ -100,9 +100,28 @@ export class TypicalJsonFile implements JsonFile {
   }
 }
 
+// TODO: change this back after testing
+export const lformJsonModuleOptions = await lform
+  .defaultLhcFormJsonModuleOptions();
+
 export class NihLhcFormJsonFile extends TypicalJsonFile {
-  get isValid(): boolean {
-    return this.fileExists;
+  readonly lhcFormJsonModule: lform.LhcFormJsonModule;
+
+  constructor(readonly fileName: string) {
+    super(fileName);
+    if (!this.fileExists) {
+      throw new Error(`${fileName} does not exist`);
+    }
+    const moduleName = tdg.forceExtension(".auto.ts", path.basename(fileName));
+    this.lhcFormJsonModule = new lform.LhcFormJsonModule({
+      ...lformJsonModuleOptions,
+      moduleName: moduleName,
+      jsonContentFileName: fileName,
+    });
+  }
+
+  async validate(): Promise<Deno.Diagnostic[] | undefined> {
+    return await this.lhcFormJsonModule.validate();
   }
 }
 
@@ -265,10 +284,7 @@ export class TypicalCampaignQuestionnaire extends TypicalQuestionnaire
     nihLhcFormFile: NihLhcFormJsonFile,
     options?: TypicalQuestionnaireOptions,
   ) {
-    super(
-      new NihLhcFormJsonFile(campaign.homePath.childFilePath(nihLhcFormFile)),
-      options,
-    );
+    super(nihLhcFormFile, options);
   }
 }
 

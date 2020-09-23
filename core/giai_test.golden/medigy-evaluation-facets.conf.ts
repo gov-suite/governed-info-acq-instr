@@ -13,9 +13,9 @@ export class QualityCampaign extends TypicalCampaign {
       campaign.questionnaires.push(
         new TypicalCampaignQuestionnaire(
           campaign,
-          new NihLhcFormJsonFile(
+          new NihLhcFormJsonFile(campaign.homePath.childFilePath(
             "medigy_quality_evaluation_facet_lhc_form.json",
-          ),
+          )),
           {
             displayName: "Medigy Quality Evaluation Facet",
             shareInfo:
@@ -36,9 +36,9 @@ export class SecurityCampaign extends TypicalCampaign {
       campaign.questionnaires.push(
         new TypicalCampaignQuestionnaire(
           campaign,
-          new NihLhcFormJsonFile(
+          new NihLhcFormJsonFile(campaign.homePath.childFilePath(
             "american_medical_association(AMA)_xcertia_lhc_form.json",
-          ),
+          )),
           {
             displayName: "American Medical Association (AMA) Xcertia",
             shareInfo:
@@ -50,9 +50,9 @@ export class SecurityCampaign extends TypicalCampaign {
         ),
         new TypicalCampaignQuestionnaire(
           campaign,
-          new NihLhcFormJsonFile(
+          new NihLhcFormJsonFile(campaign.homePath.childFilePath(
             "medigy_privacy_guidelines_evaluation_facet_lhc_form.json",
-          ),
+          )),
           {
             displayName: "Medigy Privacy Guidelines Evaluation Facet",
             shareInfo:
@@ -76,9 +76,9 @@ export class InteropCampaign extends TypicalCampaign {
         campaign.questionnaires.push(
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "medigy_terminology_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "Medigy Terminology Facet",
               shareInfo:
@@ -90,9 +90,9 @@ export class InteropCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "onc_isa_allergy_and_intolerances_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "ONC ISA Allergy and Intolerances Facet",
               shareInfo:
@@ -104,9 +104,9 @@ export class InteropCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "onc_isa_emergency_medical_services_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "ONC ISA Emergency Medical Services Facet",
               shareInfo:
@@ -118,9 +118,9 @@ export class InteropCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "onc_isa_encounter_diagnosis_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "ONC ISA Encounter Diagnosis Facet",
               shareInfo:
@@ -132,9 +132,9 @@ export class InteropCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "onc_isa_general_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "ONC ISA General Facet",
               shareInfo:
@@ -159,9 +159,9 @@ export class EthicsCampaign extends TypicalCampaign {
         campaign.questionnaires.push(
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "carin_alliance_code_of_conduct_lhc_form.json",
-            ),
+            )),
             {
               displayName: "CARIN Alliance Code of Conduct",
               shareInfo:
@@ -186,9 +186,9 @@ export class ExpectationsCampaign extends TypicalCampaign {
         campaign.questionnaires.push(
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "medigy_objectives_and_key_results_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "Medigy Objectives and Key Results Facet",
               shareInfo:
@@ -213,9 +213,9 @@ export class UserExperienceCampaign extends TypicalCampaign {
         campaign.questionnaires.push(
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "node_health_user_experience_measures_facet_lhc_form.json",
-            ),
+            )),
             {
               displayName: "NODE Health User Experience Measures Facet",
               shareInfo:
@@ -240,9 +240,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
         campaign.questionnaires.push(
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "fda_medical_device_ipr_security_lhc_form.json",
-            ),
+            )),
             {
               displayName: "FDA Medical Device IPR Security",
               shareInfo:
@@ -254,9 +254,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "fda_mitre_att_and_ck_for_enterprise_lhc_form.json",
-            ),
+            )),
             {
               displayName: "FDA MITRE ATT&CK for Enterprise",
               shareInfo:
@@ -268,9 +268,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "fda_mitre_att_and_ck_for_mobile_lhc_form.json",
-            ),
+            )),
             {
               displayName: "FDA MITRE ATT&CK for Mobile",
               shareInfo:
@@ -282,9 +282,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "fda_mitre_pre_att_and_ck_lhc_form.json",
-            ),
+            )),
             {
               displayName: "FDA MITRE Pre ATT&CK",
               shareInfo:
@@ -296,9 +296,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "medical_device_security(MDS2)_lhc_form.json",
-            ),
+            )),
             {
               displayName: "Medical Device Security (MDS2)",
               shareInfo:
@@ -310,9 +310,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "medigy_medical_device_management_lhc_form.json",
-            ),
+            )),
             {
               displayName: "Medigy Medical Device Management (MDM)",
               shareInfo:
@@ -324,9 +324,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "medigy_sdlc_hippa_privacy(pharma)_lhc_form.json",
-            ),
+            )),
             {
               displayName: "Medigy SDLC HIPAA Privacy (Pharma)",
               shareInfo:
@@ -338,9 +338,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
               "medigy_technical_questionnaire_for_vendor_hosted_offerings_lhc_form.json",
-            ),
+            )),
             {
               displayName:
                 "Medigy Technical Questionnaire for Vendor Hosted Offerings",
@@ -353,9 +353,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
-              "onc_hippa_compliance_checklist_helath_it_lhc_form.json",
-            ),
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
+              "onc_hipaa_compliance_checklist_health_it_lhc_form.json",
+            )),
             {
               displayName: "ONC HIPAA Compliance Checklist (Health IT)",
               shareInfo:
@@ -367,9 +367,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
-              "onc_hippa_privacy(pharma)_lhc_form.json",
-            ),
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
+              "onc_hipaa_privacy(pharma)_lhc_form.json",
+            )),
             {
               displayName: "ONC HIPAA Privacy (Pharma)",
               shareInfo:
@@ -381,9 +381,9 @@ export class InfoAssuranceCampaign extends TypicalCampaign {
           ),
           new TypicalCampaignQuestionnaire(
             campaign,
-            new NihLhcFormJsonFile(
-              "onc_hippa_security(pharma)_lhc_form.json",
-            ),
+            new NihLhcFormJsonFile(campaign.homePath.childFilePath(
+              "onc_hipaa_security(pharma)_lhc_form.json",
+            )),
             {
               displayName: "ONC HIPAA Security (Pharma)",
               shareInfo:
