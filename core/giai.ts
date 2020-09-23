@@ -231,7 +231,7 @@ export class TypicalCampaign implements Campaign {
 export type TypicalQuestionnaireOptions =
   & Omit<Partial<Questionnaire>, "nihLhcFormFile">
   & {
-    branchPattern: string;
+    branchPattern?: string;
   };
 
 export class TypicalQuestionnaire implements Questionnaire {

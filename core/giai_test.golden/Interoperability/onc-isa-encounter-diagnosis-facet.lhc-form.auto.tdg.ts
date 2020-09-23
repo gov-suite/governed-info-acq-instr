@@ -1,0 +1,161 @@
+// Generated from onc-isa-encounter-diagnosis-facet.lhc-form.json. DO NOT EDIT.
+
+import { nihLhcForms as lforms, typedDataGen } from "../../deps.ts";
+
+export const form: lforms.NihLhcForm = {
+  name: "ONC ISA Encounter Diagnosis Facet",
+  items: [
+    {
+      question: "Encounter Diagnosis",
+      questionCodeSystem: "Custom",
+      questionCode: "H1",
+      questionCardinality: {
+        min: 1,
+        max: 1,
+      },
+      header: true,
+      editable: "1",
+      answerCardinality: {
+        min: 0,
+        max: 1,
+      },
+      dataType: "ST",
+    },
+    {
+      question: "Which of these do you capture in Encounter Diagnosis?",
+      questionCodeSystem: "Custom",
+      questionCode: "ISA01",
+      questionCardinality: {
+        min: 1,
+        max: 1,
+      },
+      header: false,
+      editable: "1",
+      answerCardinality: {
+        min: 0,
+        max: "*",
+      },
+      dataType: "CWE",
+      answers: [
+        {
+          text: "Representing Patient Dental Encounter Diagnosis",
+          code: "01",
+        },
+        {
+          text: "Representing Patient Dental Encounter Diagnosis",
+          code: "02",
+        },
+      ],
+    },
+    {
+      question: "Representing Patient Dental Encounter Diagnosis",
+      questionCodeSystem: "Custom",
+      questionCode: "H2",
+      questionCardinality: {
+        min: 1,
+        max: 1,
+      },
+      header: true,
+      editable: "1",
+      answerCardinality: {
+        min: 0,
+        max: 1,
+      },
+      dataType: "ST",
+    },
+    {
+      question:
+        "Which of these Standard/Implementation specification do you support?",
+      questionCodeSystem: "Custom",
+      questionCode: "ISA 04",
+      questionCardinality: {
+        min: 1,
+        max: 1,
+      },
+      header: false,
+      editable: "1",
+      answerCardinality: {
+        min: 0,
+        max: "*",
+      },
+      dataType: "CWE",
+      answers: [
+        {
+          text: "SNODENT",
+          code: "01",
+        },
+        {
+          text: "ICD-10 Dental Diagnosis Codes",
+          code: "02",
+        },
+        {
+          text: "SNOMED CT®",
+          code: "03",
+        },
+        {
+          text: "ICD-10-CM",
+          code: "04",
+        },
+      ],
+    },
+    {
+      question: "Representing Patient Medical Encounter Diagnosis",
+      questionCodeSystem: "Custom",
+      questionCode: "H3",
+      questionCardinality: {
+        min: 1,
+        max: 1,
+      },
+      header: true,
+      editable: "1",
+      answerCardinality: {
+        min: 0,
+        max: 1,
+      },
+      dataType: "ST",
+    },
+    {
+      question:
+        "Which of these Standard/Implementation specification do you support?",
+      questionCodeSystem: "Custom",
+      questionCode: "ISA005",
+      questionCardinality: {
+        min: 1,
+        max: 1,
+      },
+      header: false,
+      editable: "1",
+      answerCardinality: {
+        min: 0,
+        max: "*",
+      },
+      dataType: "CWE",
+      answers: [
+        {
+          text: "SNOMED CT®",
+          code: "01",
+        },
+        {
+          text: "ICD-10-CM",
+          code: "02",
+        },
+      ],
+    },
+  ],
+  templateOptions: {
+    showFormHeader: false,
+    hideFormControls: true,
+    obrHeader: false,
+    hideUnits: true,
+    hideHeader: true,
+    allowHTMLInInstructions: true,
+    allowMultipleEmptyRepeatingItems: false,
+    showColumnHeaders: false,
+  },
+};
+
+export default form;
+
+if (import.meta.main) {
+  new typedDataGen.CliArgsEmitter(import.meta.url).emitJSON(form);
+}
