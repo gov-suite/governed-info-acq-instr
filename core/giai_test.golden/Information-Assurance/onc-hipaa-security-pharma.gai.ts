@@ -1,9 +1,13 @@
 import { EvalFacetConstructionContext, EvaluationFacet } from "../mod.ts";
 import lhcFormJsonModule from "./onc-hipaa-security-pharma.lhc-form.auto.tdg.ts";
 
+// deno-lint-ignore no-empty-interface
+export interface OncHipaaSecurityPharmaFacetConstructionContext
+  extends EvalFacetConstructionContext {}
+
 export class OncHipaaSecurityPharmaFacet extends EvaluationFacet {
-  constructor(efcc?: EvalFacetConstructionContext) {
-    super(lhcFormJsonModule, efcc);
+  constructor(ctx?: OncHipaaSecurityPharmaFacetConstructionContext) {
+    super({ ...ctx, nihlhcForm: lhcFormJsonModule });
   }
 }
 

@@ -117,6 +117,9 @@ export async function lhcFormToModuleCatalog(
 
         const imports: string[] = [];
         const exports: string[] = [];
+        const instanceDecls: string[] = [];
+        const instanceAssgns: string[] = [];
+        const instanceRegisters: string[] = [];
         const facets: string[] = [];
         const jsonSpec = path.join(
           dirWE.path,
@@ -134,6 +137,15 @@ export async function lhcFormToModuleCatalog(
           const formIV = inflect.guessCaseValue(fnc.name);
           const className = facetClassName(formIV);
           imports.push(`import { ${className} } from "./${fnc.name}.gai.ts";`);
+          instanceDecls.push(
+            `  readonly ${inflect.toCamelCase(formIV)}: ${className};`,
+          );
+          instanceAssgns.push(
+            `  this.${inflect.toCamelCase(formIV)} = new ${className}();`,
+          );
+          instanceRegisters.push(
+            `  this.instruments.push(this.${inflect.toCamelCase(formIV)});`,
+          );
           exports.push(
             `export * as ${
               inflect.toCamelCase(formIV)
@@ -143,20 +155,26 @@ export async function lhcFormToModuleCatalog(
         }
         if (imports.length > 0) {
           const managerCode = `
-          import { EvalFacetConstructor, EvaluationFacets, Path } from "../mod.ts";
+          import { EvalFacetConstructor, EvalFacetsConstructionContext, EvaluationFacets } from "../mod.ts";
           
           ${imports.join("\n")}
           
+          // deno-lint-ignore no-empty-interface
+          export interface ${facetsMgrClassName}ConstructionContext extends EvalFacetsConstructionContext {}
+
           export class ${facetsMgrClassName} extends EvaluationFacets {
             static readonly facets: readonly EvalFacetConstructor[] = [
               ${facets.join(", ")}
             ];
-          
-            constructor(homePath: Path) {
-              super("${
-            inflect.toHumanCase(dirIV)
-          }", homePath.childPath("${dirWE.name}"));
-              ${facetsMgrClassName}.facets.forEach((f) => this.questionnaires.push(new f()));
+            ${instanceDecls.join("\n")}
+
+            constructor(ctx: ${facetsMgrClassName}ConstructionContext) {
+              super({ ...ctx,
+                identity: "${inflect.toHumanCase(dirIV)}",
+                path: ctx.path.childPath("${dirWE.name}"),
+              });
+              ${instanceAssgns.join("\n")}
+              ${instanceRegisters.join("\n")}
             }
           }
 
@@ -209,9 +227,12 @@ export async function lhcFormJsonToGovernedAcqInstrument(
         tdg.forceExtension(".lhc-form.auto.tdg.ts", fnc.name)
       }";
       
+      // deno-lint-ignore no-empty-interface
+      export interface ${className}ConstructionContext extends EvalFacetConstructionContext {}
+
       export class ${className} extends EvaluationFacet {
-        constructor(efcc?: EvalFacetConstructionContext) {
-          super(lhcFormJsonModule, efcc);
+        constructor(ctx?: ${className}ConstructionContext) {
+          super({ ...ctx, nihlhcForm: lhcFormJsonModule });
         }
       }
       

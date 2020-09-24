@@ -1,15 +1,25 @@
-import { EvalFacetConstructor, EvaluationFacets, Path } from "../mod.ts";
+import {
+  EvalFacetConstructor,
+  EvalFacetsConstructionContext,
+  EvaluationFacets,
+} from "../mod.ts";
 
 import { MedigyQualityFacet } from "./medigy-quality-evaluation-facet.gai.ts";
+
+// deno-lint-ignore no-empty-interface
+export interface QualityFacetsConstructionContext
+  extends EvalFacetsConstructionContext {}
 
 export class QualityFacets extends EvaluationFacets {
   static readonly facets: readonly EvalFacetConstructor[] = [
     MedigyQualityFacet,
   ];
+  readonly medigyQualityEvaluationFacet: MedigyQualityFacet;
 
-  constructor(homePath: Path) {
-    super("Quality", homePath.childPath("Quality"));
-    QualityFacets.facets.forEach((f) => this.questionnaires.push(new f()));
+  constructor(ctx: QualityFacetsConstructionContext) {
+    super({ ...ctx, identity: "Quality", path: ctx.path.childPath("Quality") });
+    this.medigyQualityEvaluationFacet = new MedigyQualityFacet();
+    this.instruments.push(this.medigyQualityEvaluationFacet);
   }
 }
 

@@ -1,17 +1,31 @@
-import { EvalFacetConstructor, EvaluationFacets, Path } from "../mod.ts";
+import {
+  EvalFacetConstructor,
+  EvalFacetsConstructionContext,
+  EvaluationFacets,
+} from "../mod.ts";
 
 import { CarinAllianceCodeOfConductFacet } from "./carin-alliance-code-of-conduct.gai.ts";
+
+// deno-lint-ignore no-empty-interface
+export interface EthicsAndComplianceFacetsConstructionContext
+  extends EvalFacetsConstructionContext {}
 
 export class EthicsAndComplianceFacets extends EvaluationFacets {
   static readonly facets: readonly EvalFacetConstructor[] = [
     CarinAllianceCodeOfConductFacet,
   ];
+  readonly carinAllianceCodeOfConduct: CarinAllianceCodeOfConductFacet;
 
-  constructor(homePath: Path) {
-    super("Ethics And Compliance", homePath.childPath("Ethics-and-Compliance"));
-    EthicsAndComplianceFacets.facets.forEach((f) =>
-      this.questionnaires.push(new f())
+  constructor(ctx: EthicsAndComplianceFacetsConstructionContext) {
+    super(
+      {
+        ...ctx,
+        identity: "Ethics And Compliance",
+        path: ctx.path.childPath("Ethics-and-Compliance"),
+      },
     );
+    this.carinAllianceCodeOfConduct = new CarinAllianceCodeOfConductFacet();
+    this.instruments.push(this.carinAllianceCodeOfConduct);
   }
 }
 

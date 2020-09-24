@@ -1,10 +1,18 @@
-import { EvalFacetConstructor, EvaluationFacets, Path } from "../mod.ts";
+import {
+  EvalFacetConstructor,
+  EvalFacetsConstructionContext,
+  EvaluationFacets,
+} from "../mod.ts";
 
 import { MedigyTerminologyFacet } from "./medigy-terminology-facet.gai.ts";
 import { OncIsaAllergyAndIntolerancesFacet } from "./onc-isa-allergy-and-intolerances-facet.gai.ts";
 import { OncIsaEmergencyMedicalServicesFacet } from "./onc-isa-emergency-medical-services-facet.gai.ts";
 import { OncIsaEncounterDiagnosisFacet } from "./onc-isa-encounter-diagnosis-facet.gai.ts";
 import { OncIsaGeneralFacet } from "./onc-isa-general-facet.gai.ts";
+
+// deno-lint-ignore no-empty-interface
+export interface InteroperabilityFacetsConstructionContext
+  extends EvalFacetsConstructionContext {}
 
 export class InteroperabilityFacets extends EvaluationFacets {
   static readonly facets: readonly EvalFacetConstructor[] = [
@@ -14,12 +22,33 @@ export class InteroperabilityFacets extends EvaluationFacets {
     OncIsaEncounterDiagnosisFacet,
     OncIsaGeneralFacet,
   ];
+  readonly medigyTerminologyFacet: MedigyTerminologyFacet;
+  readonly oncIsaAllergyAndIntolerancesFacet: OncIsaAllergyAndIntolerancesFacet;
+  readonly oncIsaEmergencyMedicalServicesFacet:
+    OncIsaEmergencyMedicalServicesFacet;
+  readonly oncIsaEncounterDiagnosisFacet: OncIsaEncounterDiagnosisFacet;
+  readonly oncIsaGeneralFacet: OncIsaGeneralFacet;
 
-  constructor(homePath: Path) {
-    super("Interoperability", homePath.childPath("Interoperability"));
-    InteroperabilityFacets.facets.forEach((f) =>
-      this.questionnaires.push(new f())
+  constructor(ctx: InteroperabilityFacetsConstructionContext) {
+    super(
+      {
+        ...ctx,
+        identity: "Interoperability",
+        path: ctx.path.childPath("Interoperability"),
+      },
     );
+    this.medigyTerminologyFacet = new MedigyTerminologyFacet();
+    this.oncIsaAllergyAndIntolerancesFacet =
+      new OncIsaAllergyAndIntolerancesFacet();
+    this.oncIsaEmergencyMedicalServicesFacet =
+      new OncIsaEmergencyMedicalServicesFacet();
+    this.oncIsaEncounterDiagnosisFacet = new OncIsaEncounterDiagnosisFacet();
+    this.oncIsaGeneralFacet = new OncIsaGeneralFacet();
+    this.instruments.push(this.medigyTerminologyFacet);
+    this.instruments.push(this.oncIsaAllergyAndIntolerancesFacet);
+    this.instruments.push(this.oncIsaEmergencyMedicalServicesFacet);
+    this.instruments.push(this.oncIsaEncounterDiagnosisFacet);
+    this.instruments.push(this.oncIsaGeneralFacet);
   }
 }
 

@@ -1,2 +1,2 @@
-export * from "../giai.ts";
-export * from "./evaluation-facet.ts";
+export * from "../mod.ts";
+export * from "./governance.ts";
