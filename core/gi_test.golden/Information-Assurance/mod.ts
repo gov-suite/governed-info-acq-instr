@@ -1,0 +1,12 @@
+export * as fdaMedicalDeviceIprSecurity from "./fda-medical-device-ipr-security.gi.ts";
+export * as fdaMitreAttAndCkForEnterprise from "./fda-mitre-att-and-ck-for-enterprise.gi.ts";
+export * as fdaMitreAttAndCkForMobile from "./fda-mitre-att-and-ck-for-mobile.gi.ts";
+export * as fdaMitrePreAttAndCk from "./fda-mitre-pre-att-and-ck.gi.ts";
+export * as medicalDeviceSecurityMds2 from "./medical-device-security-MDS2.gi.ts";
+export * as medigyMedicalDeviceManagement from "./medigy-medical-device-management.gi.ts";
+export * as medigySdlcHipaaPrivacyPharma from "./medigy-sdlc-hipaa-privacy-pharma.gi.ts";
+export * as medigyTechnicalQuestionnaireForVendorHostedOfferings from "./medigy-technical-questionnaire-for-vendor-hosted-offerings.gi.ts";
+export * as oncHipaaComplianceChecklistHealthIt from "./onc-hipaa-compliance-checklist-health-it.gi.ts";
+export * as oncHipaaPrivacyPharma from "./onc-hipaa-privacy-pharma.gi.ts";
+export * as oncHipaaSecurityPharma from "./onc-hipaa-security-pharma.gi.ts";
+export * from "./information-assurance-facets.gi.ts";

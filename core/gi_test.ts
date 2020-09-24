@@ -1,13 +1,13 @@
 import { testingAsserts as ta } from "./deps-test.ts";
 import { path } from "./deps.ts";
-import * as ef from "./giai_test.golden/evaluation-facets.ts";
+import * as ef from "./gi_test.golden/evaluation-facets.ts";
 import * as mod from "./mod.ts";
 
 // find relative path to the test data directory (so that tests can be run from anywhere)
 const homePath = mod.fileSystemPath(
   path.relative(
     Deno.cwd(),
-    `${path.dirname(import.meta.url)}/giai_test.golden`
+    `${path.dirname(import.meta.url)}/gi_test.golden`
       .substr("file://".length),
   ),
 );

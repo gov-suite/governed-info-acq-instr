@@ -4,17 +4,17 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { FdaMedicalDeviceIprSecurityFacet } from "./fda-medical-device-ipr-security.gai.ts";
-import { FdaMitreAttAndCkForEnterpriseFacet } from "./fda-mitre-att-and-ck-for-enterprise.gai.ts";
-import { FdaMitreAttAndCkForMobileFacet } from "./fda-mitre-att-and-ck-for-mobile.gai.ts";
-import { FdaMitrePreAttAndCkFacet } from "./fda-mitre-pre-att-and-ck.gai.ts";
-import { MedicalDeviceSecurityMds2Facet } from "./medical-device-security-MDS2.gai.ts";
-import { MedigyMedicalDeviceManagementFacet } from "./medigy-medical-device-management.gai.ts";
-import { MedigySdlcHipaaPrivacyPharmaFacet } from "./medigy-sdlc-hipaa-privacy-pharma.gai.ts";
-import { MedigyTechnicalQuestionnaireForVendorHostedOfferingsFacet } from "./medigy-technical-questionnaire-for-vendor-hosted-offerings.gai.ts";
-import { OncHipaaComplianceChecklistHealthItFacet } from "./onc-hipaa-compliance-checklist-health-it.gai.ts";
-import { OncHipaaPrivacyPharmaFacet } from "./onc-hipaa-privacy-pharma.gai.ts";
-import { OncHipaaSecurityPharmaFacet } from "./onc-hipaa-security-pharma.gai.ts";
+import { FdaMedicalDeviceIprSecurityFacet } from "./fda-medical-device-ipr-security.gi.ts";
+import { FdaMitreAttAndCkForEnterpriseFacet } from "./fda-mitre-att-and-ck-for-enterprise.gi.ts";
+import { FdaMitreAttAndCkForMobileFacet } from "./fda-mitre-att-and-ck-for-mobile.gi.ts";
+import { FdaMitrePreAttAndCkFacet } from "./fda-mitre-pre-att-and-ck.gi.ts";
+import { MedicalDeviceSecurityMds2Facet } from "./medical-device-security-MDS2.gi.ts";
+import { MedigyMedicalDeviceManagementFacet } from "./medigy-medical-device-management.gi.ts";
+import { MedigySdlcHipaaPrivacyPharmaFacet } from "./medigy-sdlc-hipaa-privacy-pharma.gi.ts";
+import { MedigyTechnicalQuestionnaireForVendorHostedOfferingsFacet } from "./medigy-technical-questionnaire-for-vendor-hosted-offerings.gi.ts";
+import { OncHipaaComplianceChecklistHealthItFacet } from "./onc-hipaa-compliance-checklist-health-it.gi.ts";
+import { OncHipaaPrivacyPharmaFacet } from "./onc-hipaa-privacy-pharma.gi.ts";
+import { OncHipaaSecurityPharmaFacet } from "./onc-hipaa-security-pharma.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface InformationAssuranceFacetsConstructionContext

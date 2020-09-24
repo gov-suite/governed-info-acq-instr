@@ -4,11 +4,11 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { MedigyTerminologyFacet } from "./medigy-terminology-facet.gai.ts";
-import { OncIsaAllergyAndIntolerancesFacet } from "./onc-isa-allergy-and-intolerances-facet.gai.ts";
-import { OncIsaEmergencyMedicalServicesFacet } from "./onc-isa-emergency-medical-services-facet.gai.ts";
-import { OncIsaEncounterDiagnosisFacet } from "./onc-isa-encounter-diagnosis-facet.gai.ts";
-import { OncIsaGeneralFacet } from "./onc-isa-general-facet.gai.ts";
+import { MedigyTerminologyFacet } from "./medigy-terminology-facet.gi.ts";
+import { OncIsaAllergyAndIntolerancesFacet } from "./onc-isa-allergy-and-intolerances-facet.gi.ts";
+import { OncIsaEmergencyMedicalServicesFacet } from "./onc-isa-emergency-medical-services-facet.gi.ts";
+import { OncIsaEncounterDiagnosisFacet } from "./onc-isa-encounter-diagnosis-facet.gi.ts";
+import { OncIsaGeneralFacet } from "./onc-isa-general-facet.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface InteroperabilityFacetsConstructionContext

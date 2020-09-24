@@ -4,7 +4,7 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { NodeHealthUserExperienceMeasuresFacet } from "./node-health-user-experience-measures-facet.gai.ts";
+import { NodeHealthUserExperienceMeasuresFacet } from "./node-health-user-experience-measures-facet.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface UserExperienceFacetsConstructionContext

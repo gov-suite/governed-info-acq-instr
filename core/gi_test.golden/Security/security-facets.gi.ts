@@ -4,8 +4,8 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { AmericanMedicalAssociationXcertiaFacet } from "./american-medical-association-xcertia.gai.ts";
-import { MedigyPrivacyGuidelinesFacet } from "./medigy-privacy-guidelines-evaluation-facet.gai.ts";
+import { AmericanMedicalAssociationXcertiaFacet } from "./american-medical-association-xcertia.gi.ts";
+import { MedigyPrivacyGuidelinesFacet } from "./medigy-privacy-guidelines-evaluation-facet.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface SecurityFacetsConstructionContext

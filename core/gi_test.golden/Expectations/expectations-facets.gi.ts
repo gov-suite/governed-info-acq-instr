@@ -4,7 +4,7 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { MedigyObjectivesAndKeyResultsFacet } from "./medigy-objectives-and-key-results-facet.gai.ts";
+import { MedigyObjectivesAndKeyResultsFacet } from "./medigy-objectives-and-key-results-facet.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface ExpectationsFacetsConstructionContext

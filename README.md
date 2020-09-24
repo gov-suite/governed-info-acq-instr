@@ -1,14 +1,14 @@
-# Governed Information Acquisition Instruments (GIAI) 
+# Governed Instrument (GI)
 
 A "survey instrument" is a tool for obtaining data from respondents. **Governed
-Information Acquisition Instruments** (**GIAI**) is an opinionated approach to
-managing information acquisition instruments such as human-powered surveys as
-web forms as well as machine-powered data collection systems.
+Instrument** (**GI**) is an opinionated approach to managing information 
+acquisition instruments such as human-powered surveys as web forms as well as
+machine-powered data collection systems.
 
-GIAI uses [TypeScript](https://typescriptlang.org/) as the core configuration 
+GI uses [TypeScript](https://typescriptlang.org/) as the core configuration 
 language and generates appropriate NIH LHC Form and related artifacts.
 
-The GIAI is designed to specify, in a form-engine and orchestration agnostic approach, complex
+The GI is designed to specify, in a form-engine and orchestration agnostic approach, complex
 validatable data acquisition systems. It's based on a "specify once, generate many" design philosophy.
 
 ## To test

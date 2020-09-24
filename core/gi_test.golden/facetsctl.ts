@@ -15,7 +15,7 @@ Medigy Quantitative Evaluation Facets Controller ${$VERSION}.
 
 Usage:
   facetsctl json-to-mod <start-path> <lhc-json-src> [--verbose] [--overwrite]
-  facetsctl json-to-gai <lhc-json-src> [--verbose] [--overwrite]
+  facetsctl json-to-gi <lhc-json-src> [--verbose] [--overwrite]
   facetsctl json-to-tdg <lhc-json-src> [--verbose]
   facetsctl -h | --help
   facetsctl --version
@@ -104,7 +104,7 @@ export async function lhcFormToModuleCatalog(
         const dirIV = inflect.guessCaseValue(dirWE.name);
         const facetsMgrFileName = path.join(
           dirWE.path,
-          `${inflect.toKebabCase(dirIV)}-facets.gai.ts`,
+          `${inflect.toKebabCase(dirIV)}-facets.gi.ts`,
         );
         const facetsMgrClassName = inflect.toPascalCase(dirIV) + "Facets";
         const modFileName = path.join(dirWE.path, "mod.ts");
@@ -136,7 +136,7 @@ export async function lhcFormToModuleCatalog(
           const fnc = fileNameComponents(we.name);
           const formIV = inflect.guessCaseValue(fnc.name);
           const className = facetClassName(formIV);
-          imports.push(`import { ${className} } from "./${fnc.name}.gai.ts";`);
+          imports.push(`import { ${className} } from "./${fnc.name}.gi.ts";`);
           instanceDecls.push(
             `  readonly ${inflect.toCamelCase(formIV)}: ${className};`,
           );
@@ -149,7 +149,7 @@ export async function lhcFormToModuleCatalog(
           exports.push(
             `export * as ${
               inflect.toCamelCase(formIV)
-            } from "./${fnc.name}.gai.ts";`,
+            } from "./${fnc.name}.gi.ts";`,
           );
           facets.push(className);
         }
@@ -203,7 +203,7 @@ export async function lhcFormJsonToGovernedAcqInstrument(
   options: DocOptions,
 ): Promise<true | void> {
   const {
-    "json-to-gai": jsonToGAI,
+    "json-to-gi": jsonToGAI,
     "<lhc-json-src>": lhcFormJsonSrcSpec,
     "--overwrite": overwrite,
   } = options;
@@ -212,7 +212,7 @@ export async function lhcFormJsonToGovernedAcqInstrument(
     const sourceSpec = lhcFormJsonSrcSpec.toString();
     for (const we of fs.expandGlobSync(sourceSpec)) {
       const fnc = fileNameComponents(we.name);
-      const gaiModuleFileName = forceExtension(".gai.ts", we, fnc);
+      const gaiModuleFileName = forceExtension(".gi.ts", we, fnc);
       if (fs.existsSync(gaiModuleFileName) && !overwrite) {
         console.warn(
           `${gaiModuleFileName} exists, use --overwrite to replace it.`,

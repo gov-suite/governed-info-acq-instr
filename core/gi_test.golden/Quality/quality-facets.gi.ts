@@ -4,7 +4,7 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { MedigyQualityFacet } from "./medigy-quality-evaluation-facet.gai.ts";
+import { MedigyQualityFacet } from "./medigy-quality-evaluation-facet.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface QualityFacetsConstructionContext

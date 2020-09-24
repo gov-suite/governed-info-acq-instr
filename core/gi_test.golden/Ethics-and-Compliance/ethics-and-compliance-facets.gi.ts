@@ -4,7 +4,7 @@ import {
   EvaluationFacets,
 } from "../mod.ts";
 
-import { CarinAllianceCodeOfConductFacet } from "./carin-alliance-code-of-conduct.gai.ts";
+import { CarinAllianceCodeOfConductFacet } from "./carin-alliance-code-of-conduct.gi.ts";
 
 // deno-lint-ignore no-empty-interface
 export interface EthicsAndComplianceFacetsConstructionContext
