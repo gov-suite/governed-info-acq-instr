@@ -1,6 +1,7 @@
+import type * as attr from "./attribute.ts";
 import type { nihLhcForms as lform } from "./deps.ts";
-import type * as store from "./store.ts";
 import * as loc from "./location.ts";
+import type * as store from "./store.ts";
 
 export interface Instrument {
   readonly isInstrument: true;
@@ -10,34 +11,14 @@ export interface HumanSurveyInstrument extends Instrument {
   readonly isHumanSurveyInstrument: true;
 }
 
-export type Identity = string;
-
-export interface Identifiable {
-  readonly identity: Identity;
-}
-
-export type TextTemplate = string;
-
-export interface Invitable {
-  readonly invitation: TextTemplate;
-}
-
-export interface Sortable {
-  readonly sortOrder: number;
-}
-
-export interface NihLhcFormInstrument extends Identifiable, store.GitStorable {
+export interface NihLhcFormInstrument
+  extends attr.Identifiable, store.GitStorable {
   readonly nihLhcForm: lform.NihLhcForm;
-}
-
-export interface NihLhcFormResponse
-  extends Identifiable, store.GitStorable, store.AttachmentsSupplier {
-  readonly instrument: NihLhcFormInstrument;
 }
 
 export type CampaignName = string;
 
-export interface Campaign extends Identifiable, Sortable {
+export interface Campaign extends attr.Identifiable, attr.Sortable {
   readonly instruments: Instrument[];
 }
 
@@ -47,18 +28,18 @@ export interface CampaignInstrument extends Instrument {
 
 export interface TypicalInstrumentOptions
   extends
-    Partial<Identifiable>,
+    Partial<attr.Identifiable>,
     Partial<CampaignInstrument>,
     Partial<store.GitStorable>,
-    Partial<Sortable> {
+    Partial<attr.Sortable> {
   readonly nihlhcForm: lform.NihLhcForm;
 }
 
 export class TypicalInstrument
-  implements HumanSurveyInstrument, NihLhcFormInstrument, Sortable {
+  implements HumanSurveyInstrument, NihLhcFormInstrument, attr.Sortable {
   readonly isInstrument = true;
   readonly isHumanSurveyInstrument = true;
-  readonly identity: Identity;
+  readonly identity: attr.Identity;
   readonly nihLhcForm: lform.NihLhcForm;
   readonly store: store.GitStore;
   readonly sortOrder: number;
@@ -84,7 +65,7 @@ export class TypicalCampaign implements Campaign {
   readonly sortOrder: number;
 
   constructor(
-    readonly identity: Identity,
+    readonly identity: attr.Identity,
     readonly init?: (self: TypicalCampaign) => void,
     readonly options?: Omit<Partial<Campaign>, "identity">,
   ) {
