@@ -1,4 +1,4 @@
-import { fs, path } from "./deps.ts";
+import { fs, path, safety } from "./deps.ts";
 
 export type URL = string;
 export type FsPathOnly = string;
@@ -21,9 +21,9 @@ export interface FileSystemPath extends Path {
   readonly exists: boolean;
 }
 
-export function isFileSystemPath(o: unknown): o is FileSystemPath {
-  return o && typeof o === "object" && "isFileSystemPath" in o;
-}
+export const isFileSystemPath = safety.typeGuard<FileSystemPath>(
+  "isFileSystemPath",
+);
 
 export function fileSystemPath(fsPath: FsPathOnly): FileSystemPath {
   return {
